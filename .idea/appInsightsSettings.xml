@@ -8,10 +8,10 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="PLACEHOLDER" />
-                  <option name="mobileSdkAppId" value="" />
-                  <option name="projectId" value="" />
-                  <option name="projectNumber" value="" />
+                  <option name="appId" value="com.example.servermonitor" />
+                  <option name="mobileSdkAppId" value="1:143187324199:android:71348f68dea1901e9b8d02" />
+                  <option name="projectId" value="server-monitor-e6bb3" />
+                  <option name="projectNumber" value="143187324199" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />

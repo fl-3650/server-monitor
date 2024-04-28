@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "143187324199",
+    "project_id": "server-monitor-e6bb3",
+    "storage_bucket": "server-monitor-e6bb3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:143187324199:android:71348f68dea1901e9b8d02",
+        "android_client_info": {
+          "package_name": "com.example.servermonitor"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAdXOG9fA932ifbdWrT-3qitEGbeGK-oDw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
