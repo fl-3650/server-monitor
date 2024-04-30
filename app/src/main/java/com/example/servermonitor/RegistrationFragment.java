@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 
 import android.text.TextUtils;
@@ -43,13 +44,13 @@ public class RegistrationFragment extends Fragment {
         editTextEmail = view.findViewById(R.id.email);
         editTextPassword = view.findViewById(R.id.password);
         buttonRegister = view.findViewById(R.id.btn_register);
-        buttonLoginNow = view.findViewById(R.id.btn_register_now);
+        buttonLoginNow = view.findViewById(R.id.btn_login_now);
         progressBar = view.findViewById(R.id.progressBar);
 
-        buttonLoginNow.setOnClickListener(v -> {
-            NavController navController = NavHostFragment
-                    .findNavController(RegistrationFragment.this);
-            navController.navigate(R.id.action_registrationFragment_to_loginFragment);
+        buttonLoginNow.setOnClickListener(navigation -> {
+            // Navigate to the next destination
+            Navigation.findNavController(view)
+                    .navigate(R.id.action_registrationFragment_to_loginFragment);
         });
 
 

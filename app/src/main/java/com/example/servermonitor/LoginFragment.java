@@ -47,9 +47,10 @@ public class LoginFragment extends Fragment {
 
         buttonRegisterNow = view.findViewById(R.id.btn_register_now);
 
-        buttonRegisterNow.setOnClickListener(v -> {
-            NavController navController = Navigation.findNavController(getView());
-            navController.navigate(R.id.action_loginFragment_to_registrationFragment);
+        buttonRegisterNow.setOnClickListener(navigation -> {
+            // Navigate to the next destination
+            Navigation.findNavController(view)
+                    .navigate(R.id.action_loginFragment_to_registrationFragment);
         });
 
 
