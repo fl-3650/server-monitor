@@ -70,6 +70,7 @@ public class RegistrationFragment extends Fragment {
 
             if (TextUtils.isEmpty(password)) {
                 Toast.makeText(getContext(), "Password is empty", Toast.LENGTH_SHORT).show();
+                return;
             }
 
             mAuth.createUserWithEmailAndPassword(email, password)
