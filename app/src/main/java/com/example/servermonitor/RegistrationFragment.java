@@ -16,7 +16,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class RegistrationFragment extends Fragment {
-
     private TextInputEditText editTextEmail;
     private TextInputEditText editTextPassword;
     private FirebaseAuth mAuth;
