@@ -17,17 +17,25 @@ import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class RegistrationFragment extends Fragment {
 
     private TextInputEditText editTextEmail;
     private TextInputEditText editTextPassword;
-    private Button buttonRegister;
-    private Button buttonLoginNow;
-    private ProgressBar progressBar;
     private FirebaseAuth mAuth;
 
     public RegistrationFragment() {
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if (currentUser != null) {
+            Navigation.findNavController(requireView())
+                    .navigate(R.id.action_loginFragment_to_homeFragment);
+        }
     }
 
     @Override
@@ -43,19 +51,19 @@ public class RegistrationFragment extends Fragment {
         mAuth = FirebaseAuth.getInstance();
         editTextEmail = view.findViewById(R.id.email);
         editTextPassword = view.findViewById(R.id.password);
-        buttonRegister = view.findViewById(R.id.btn_register);
-        buttonLoginNow = view.findViewById(R.id.btn_login_now);
-        progressBar = view.findViewById(R.id.progressBar);
 
+
+        Button buttonLoginNow = view.findViewById(R.id.btn_login_now);
         buttonLoginNow.setOnClickListener(navigation -> {
             // Navigate to the next destination
             Navigation.findNavController(view)
                     .navigate(R.id.action_registrationFragment_to_loginFragment);
+            onDestroy();
         });
 
 
+        Button buttonRegister = view.findViewById(R.id.btn_register);
         buttonRegister.setOnClickListener(v -> {
-            progressBar.setVisibility(View.VISIBLE);
             String email = String.valueOf(editTextEmail.getText()) ;
             String password = String.valueOf(editTextPassword.getText());
 
@@ -71,12 +79,11 @@ public class RegistrationFragment extends Fragment {
             mAuth.createUserWithEmailAndPassword(email, password)
                     .addOnCompleteListener(task -> {
                         if (task.isSuccessful()) {
-                            progressBar.setVisibility(View.GONE);
-                            Toast.makeText(getContext(), "Authentication succeeded.",
+                            Toast.makeText(getContext(),
+                                    "Authentication succeeded. You can login now",
                                     Toast.LENGTH_SHORT).show();
 
                         } else {
-                            progressBar.setVisibility(View.GONE);
                             Toast.makeText(getContext(), "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
 
