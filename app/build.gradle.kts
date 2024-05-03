@@ -30,9 +30,8 @@ android {
 }
 
 dependencies {
-    val navVersion = "2.7.7"
-    implementation("androidx.navigation:navigation-fragment:$navVersion")
-    implementation("androidx.navigation:navigation-ui:$navVersion")
+    implementation(libs.navigation.fragment)
+    implementation(libs.navigation.ui)
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.activity)
