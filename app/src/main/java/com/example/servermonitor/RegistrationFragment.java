@@ -15,6 +15,8 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.util.Objects;
+
 public class RegistrationFragment extends Fragment {
     private TextInputEditText editTextEmail;
     private TextInputEditText editTextPassword;
@@ -50,7 +52,6 @@ public class RegistrationFragment extends Fragment {
 
         Button buttonLoginNow = view.findViewById(R.id.btn_login_now);
         buttonLoginNow.setOnClickListener(navigation -> {
-            // Navigate to the next destination
             Navigation.findNavController(view)
                     .navigate(R.id.action_registrationFragment_to_loginFragment);
             onDestroy();
@@ -90,5 +91,12 @@ public class RegistrationFragment extends Fragment {
 
         return view;
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        ((MainActivity) requireActivity()).showBottomNavigationView(false);
+    }
+
 
 }

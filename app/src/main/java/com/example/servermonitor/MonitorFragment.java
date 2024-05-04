@@ -3,23 +3,14 @@ package com.example.servermonitor;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.TextView;
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
+public class MonitorFragment extends Fragment {
 
-import java.util.Objects;
-
-public class HomeFragment extends Fragment {
-
-
-    public HomeFragment() {
+    public MonitorFragment() {
     }
 
     @Override
@@ -31,9 +22,7 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_home, container, false);
-
-
+        View view = inflater.inflate(R.layout.fragment_monitor, container, false);
 
         return view;
     }
@@ -43,5 +32,4 @@ public class HomeFragment extends Fragment {
         super.onResume();
         ((MainActivity) requireActivity()).showBottomNavigationView(true);
     }
-
 }

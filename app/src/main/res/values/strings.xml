@@ -8,4 +8,7 @@
     <string name="register_now">Register now</string>
     <string name="login_now">Login now</string>
     <string name="logout">Logout</string>
+    <string name="home">Home</string>
+    <string name="profile">Profile</string>
+    <string name="monitor">Monitor</string>
 </resources>
