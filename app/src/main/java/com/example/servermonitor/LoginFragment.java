@@ -20,7 +20,6 @@ public class LoginFragment extends Fragment {
     private TextInputEditText editTextPassword;
     private FirebaseAuth mAuth;
 
-
     public LoginFragment() {
     }
 
@@ -52,7 +51,6 @@ public class LoginFragment extends Fragment {
 
         Button buttonRegisterNow = view.findViewById(R.id.btn_register_now);
         buttonRegisterNow.setOnClickListener(navigation -> {
-            // Navigate to the next destination
             Navigation.findNavController(view)
                     .navigate(R.id.action_loginFragment_to_registrationFragment);
             onDestroy();
@@ -90,4 +88,11 @@ public class LoginFragment extends Fragment {
 
         return view;
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        ((MainActivity) requireActivity()).showBottomNavigationView(false);
+    }
+
 }

@@ -7,10 +7,9 @@ import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
 
-public class HomeFragment extends Fragment {
+public class MonitorFragment extends Fragment {
 
-
-    public HomeFragment() {
+    public MonitorFragment() {
     }
 
     @Override
@@ -22,9 +21,7 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_home, container, false);
-
-
+        View view = inflater.inflate(R.layout.fragment_monitor, container, false);
 
         return view;
     }
@@ -34,5 +31,4 @@ public class HomeFragment extends Fragment {
         super.onResume();
         ((MainActivity) requireActivity()).showBottomNavigationView(true);
     }
-
 }
