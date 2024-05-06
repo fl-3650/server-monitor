@@ -15,8 +15,6 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-import java.util.Objects;
-
 public class RegistrationFragment extends Fragment {
     private TextInputEditText editTextEmail;
     private TextInputEditText editTextPassword;
