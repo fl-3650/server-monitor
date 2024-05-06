@@ -1,7 +1,6 @@
 package com.example.servermonitor;
 
 import java.util.List;
-import java.util.Objects;
 
 public class ServerInfo {
     private double total_disk_space;
@@ -17,6 +16,7 @@ public class ServerInfo {
     public ServerInfo(double total_disk_space, double occupied_disk_space,
                       double free_disk_space_percentage, double cpu_load,
                       double ram_usage, double uptime, List<String> logged_in_users) {
+
         this.total_disk_space = total_disk_space;
         this.occupied_disk_space = occupied_disk_space;
         this.free_disk_space_percentage = free_disk_space_percentage;

@@ -16,9 +16,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class MonitorFragment extends Fragment {
     private static final String TAG = "RRR";
 
@@ -74,11 +71,10 @@ public class MonitorFragment extends Fragment {
                 }
             }
 
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 Log.w(TAG, "Failed to read value.", error.toException());
-                textView.setText("Error: " + error.getMessage());
+                textView.setText(error.getMessage());
             }
         });
 
