@@ -8,6 +8,7 @@
     tools:context=".LogsFragment">
 
     <TextView
+        android:id="@+id/textViewLogs"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Home here"
