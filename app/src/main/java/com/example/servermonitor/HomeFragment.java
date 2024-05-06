@@ -11,7 +11,6 @@ import java.util.Objects;
 
 public class HomeFragment extends Fragment {
 
-
     public HomeFragment() {
     }
 
@@ -36,5 +35,4 @@ public class HomeFragment extends Fragment {
         super.onResume();
         ((MainActivity) requireActivity()).showBottomNavigationView(true);
     }
-
 }
