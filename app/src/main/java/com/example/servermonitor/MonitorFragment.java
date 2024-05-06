@@ -59,21 +59,21 @@ public class MonitorFragment extends Fragment {
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                ServerInfo serverInfo = snapshot.getValue(ServerInfo.class);
-                if (serverInfo != null) {
-                    // Set the data in your textView or other UI components
-                    String info = "Total Disk Space: " + serverInfo.getTotal_disk_space() + "\n" +
-                            "Occupied Disk Space: " + serverInfo.getOccupied_disk_space() + "\n" +
-                            "Free Disk Space Percentage: " + serverInfo.getFree_disk_space_percentage() + "\n" +
-                            "CPU Load: " + serverInfo.getCpu_load() + "\n" +
-                            "RAM Usage: " + serverInfo.getRam_usage() + "\n" +
-                            "Uptime: " + serverInfo.getUptime() + "\n" +
-                            "Logged In Users: " + serverInfo.getLogged_in_users().toString();
-                    textView.setText(info);
+                ServerInfo serverStatus = snapshot.getValue(ServerInfo.class);
+                if (serverStatus != null) {
+                    String data = "Total Disk Space: " + serverStatus.getTotal_disk_space() + "\n" +
+                            "Occupied Disk Space: " + serverStatus.getOccupied_disk_space() + "\n" +
+                            "Free Disk Space Percentage: " + serverStatus.getFree_disk_space_percentage() + "\n" +
+                            "CPU Load: " + serverStatus.getCpu_load() + "\n" +
+                            "RAM Usage: " + serverStatus.getRam_usage() + "\n" +
+                            "Uptime: " + serverStatus.getUptime() + "\n" +
+                            "Logged In Users: " + serverStatus.getLogged_in_users().toString();
+                    textView.setText(data);
                 } else {
                     textView.setText("No data available");
                 }
             }
+
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
