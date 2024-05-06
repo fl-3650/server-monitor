@@ -51,7 +51,8 @@ public class MonitorFragment extends Fragment {
     }
 
     private void displayStatus() {
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance(URL).getReference();
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance(URL)
+                .getReference("stats");
 
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override

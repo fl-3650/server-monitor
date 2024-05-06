@@ -94,5 +94,4 @@ public class LoginFragment extends Fragment {
         super.onResume();
         ((MainActivity) requireActivity()).showBottomNavigationView(false);
     }
-
 }
