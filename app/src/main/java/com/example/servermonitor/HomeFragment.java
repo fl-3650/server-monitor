@@ -7,10 +7,7 @@ import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
 
-import java.util.Objects;
-
 public class HomeFragment extends Fragment {
-
 
     public HomeFragment() {
     }
@@ -36,5 +33,4 @@ public class HomeFragment extends Fragment {
         super.onResume();
         ((MainActivity) requireActivity()).showBottomNavigationView(true);
     }
-
 }
