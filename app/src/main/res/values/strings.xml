@@ -11,4 +11,6 @@
     <string name="home">Home</string>
     <string name="profile">Profile</string>
     <string name="monitor">Monitor</string>
+    <string name="status">Status:</string>
+    <string name="monitoring_here">Monitoring here</string>
 </resources>

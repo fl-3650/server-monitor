@@ -95,6 +95,4 @@ public class RegistrationFragment extends Fragment {
         super.onResume();
         ((MainActivity) requireActivity()).showBottomNavigationView(false);
     }
-
-
 }

@@ -41,7 +41,7 @@ public class ProfileFragment extends Fragment {
             Navigation.findNavController(view)
                     .navigate(R.id.action_profileFragment_to_loginFragment);
         } else {
-            textView.setText(user.getEmail());
+            textView.setText("E-Mail: " + user.getEmail());
         }
 
         button.setOnClickListener(v -> {
