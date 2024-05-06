@@ -11,7 +11,8 @@ public class ServerInfo {
     private double uptime;
     private List<String> logged_in_users;
 
-    public ServerInfo() {}
+    public ServerInfo() {
+    }
 
     public ServerInfo(double total_disk_space, double occupied_disk_space,
                       double free_disk_space_percentage, double cpu_load,

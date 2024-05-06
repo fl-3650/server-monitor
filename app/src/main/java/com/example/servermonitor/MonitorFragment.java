@@ -37,7 +37,7 @@ public class MonitorFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_monitor, container, false);
-        textView = view.findViewById(R.id.textView);
+        textView = view.findViewById(R.id.textViewMonitor);
 
         displayStatus();
 
@@ -57,16 +57,18 @@ public class MonitorFragment extends Fragment {
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                ServerInfo serverStatus = snapshot.getValue(ServerInfo.class);
-                if (serverStatus != null) {
-                    String data = "Total Disk Space: " + serverStatus.getTotal_disk_space() + "\n" +
-                            "Occupied Disk Space: " + serverStatus.getOccupied_disk_space() + "\n" +
-                            "Free Disk Space Percentage: " + serverStatus.getFree_disk_space_percentage() + "\n" +
-                            "CPU Load: " + serverStatus.getCpu_load() + "\n" +
-                            "RAM Usage: " + serverStatus.getRam_usage() + "\n" +
-                            "Uptime: " + serverStatus.getUptime() + "\n" +
-                            "Logged In Users: " + serverStatus.getLogged_in_users().toString();
+                ServerInfo serverInfo = snapshot.getValue(ServerInfo.class);
+                if (serverInfo != null) {
+                    String data = "Total Disk Space: " + serverInfo.getTotal_disk_space() + "\n" +
+                            "Occupied Disk Space: " + serverInfo.getOccupied_disk_space() + "\n" +
+                            "Free Disk Space Percentage: " + serverInfo
+                            .getFree_disk_space_percentage() + "\n" +
+                            "CPU Load: " + serverInfo.getCpu_load() + "\n" +
+                            "RAM Usage: " + serverInfo.getRam_usage() + "\n" +
+                            "Uptime: " + serverInfo.getUptime() + "\n" +
+                            "Logged In Users: " + serverInfo.getLogged_in_users().toString();
                     textView.setText(data);
+
                 } else {
                     textView.setText("No data available");
                 }

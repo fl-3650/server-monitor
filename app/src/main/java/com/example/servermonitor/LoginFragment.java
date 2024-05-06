@@ -58,7 +58,7 @@ public class LoginFragment extends Fragment {
 
 
         buttonLogin.setOnClickListener(v -> {
-            String email = String.valueOf(editTextEmail.getText()) ;
+            String email = String.valueOf(editTextEmail.getText());
             String password = String.valueOf(editTextPassword.getText());
 
             if (TextUtils.isEmpty(email)) {
@@ -68,6 +68,7 @@ public class LoginFragment extends Fragment {
 
             if (TextUtils.isEmpty(password)) {
                 Toast.makeText(getContext(), "Password is empty", Toast.LENGTH_SHORT).show();
+                return;
             }
 
             mAuth.signInWithEmailAndPassword(email, password)

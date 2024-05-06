@@ -58,7 +58,7 @@ public class RegistrationFragment extends Fragment {
 
         Button buttonRegister = view.findViewById(R.id.btn_register);
         buttonRegister.setOnClickListener(v -> {
-            String email = String.valueOf(editTextEmail.getText()) ;
+            String email = String.valueOf(editTextEmail.getText());
             String password = String.valueOf(editTextPassword.getText());
 
             if (TextUtils.isEmpty(email)) {
