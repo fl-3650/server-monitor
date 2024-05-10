@@ -14,4 +14,8 @@
     <string name="status">Status:</string>
     <string name="monitoring_here">Monitoring here</string>
     <string name="logs">Logs</string>
+    <string name="timestamp">Timestamp</string>
+    <string name="level">Level</string>
+    <string name="message">Message</string>
+    <string name="server_id">Server ID</string>
 </resources>
