@@ -18,4 +18,6 @@
     <string name="level">Level</string>
     <string name="message">Message</string>
     <string name="server_id">Server ID</string>
+    <string name="email_label">Email: %1$s</string>
+    <string name="no_data_available">No data available</string>
 </resources>

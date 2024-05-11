@@ -59,18 +59,18 @@ public class MonitorFragment extends Fragment {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 ServerInfo serverInfo = snapshot.getValue(ServerInfo.class);
                 if (serverInfo != null) {
-                    String data = "Total Disk Space: " + serverInfo.getTotal_disk_space() + "\n" +
-                            "Occupied Disk Space: " + serverInfo.getOccupied_disk_space() + "\n" +
+                    String data = "Total Disk Space: " + serverInfo.getTotal_disk_space() + "\n\n" +
+                            "Occupied Disk Space: " + serverInfo.getOccupied_disk_space() + "\n\n" +
                             "Free Disk Space Percentage: " + serverInfo
-                            .getFree_disk_space_percentage() + "\n" +
-                            "CPU Load: " + serverInfo.getCpu_load() + "\n" +
-                            "RAM Usage: " + serverInfo.getRam_usage() + "\n" +
-                            "Uptime: " + serverInfo.getUptime() + "\n" +
+                            .getFree_disk_space_percentage() + "\n\n" +
+                            "CPU Load: " + serverInfo.getCpu_load() + "\n\n" +
+                            "RAM Usage: " + serverInfo.getRam_usage() + "\n\n" +
+                            "Uptime: " + serverInfo.getUptime() + "\n\n" +
                             "Logged In Users: " + serverInfo.getLogged_in_users().toString();
                     textView.setText(data);
 
                 } else {
-                    textView.setText("No data available");
+                    textView.setText(R.string.no_data_available);
                 }
             }
 

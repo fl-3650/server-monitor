@@ -47,13 +47,9 @@ public class RegistrationFragment extends Fragment {
         editTextEmail = view.findViewById(R.id.email);
         editTextPassword = view.findViewById(R.id.password);
 
-
         Button buttonLoginNow = view.findViewById(R.id.btn_login_now);
-        buttonLoginNow.setOnClickListener(navigation -> {
-            Navigation.findNavController(view)
-                    .navigate(R.id.action_registrationFragment_to_loginFragment);
-            onDestroy();
-        });
+        buttonLoginNow.setOnClickListener(navigation -> Navigation.findNavController(view)
+                .navigate(R.id.action_registrationFragment_to_loginFragment));
 
 
         Button buttonRegister = view.findViewById(R.id.btn_register);
@@ -71,8 +67,7 @@ public class RegistrationFragment extends Fragment {
                 return;
             }
 
-            mAuth.createUserWithEmailAndPassword(email, password)
-                    .addOnCompleteListener(task -> {
+            mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
                         if (task.isSuccessful()) {
                             Toast.makeText(getContext(),
                                     "Authentication succeeded. You can login now",
@@ -85,7 +80,6 @@ public class RegistrationFragment extends Fragment {
                         }
                     });
         });
-
 
         return view;
     }

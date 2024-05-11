@@ -14,10 +14,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class ProfileFragment extends Fragment {
-    private FirebaseAuth auth;
-    private Button button;
-    private TextView textView;
-    private FirebaseUser user;
 
     public ProfileFragment() {
     }
@@ -32,16 +28,17 @@ public class ProfileFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
-        auth = FirebaseAuth.getInstance();
-        button = view.findViewById(R.id.logout);
-        textView = view.findViewById(R.id.user_details);
-        user = auth.getCurrentUser();
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+        Button button = view.findViewById(R.id.logout);
+        TextView textView = view.findViewById(R.id.user_details);
+        FirebaseUser user = auth.getCurrentUser();
 
         if (user == null) {
             Navigation.findNavController(view)
                     .navigate(R.id.action_profileFragment_to_loginFragment);
         } else {
-            textView.setText("E-Mail: " + user.getEmail());
+            String emailLabel = getString(R.string.email_label, user.getEmail());
+            textView.setText(emailLabel);
         }
 
         button.setOnClickListener(v -> {
@@ -49,6 +46,7 @@ public class ProfileFragment extends Fragment {
             Navigation.findNavController(view)
                     .navigate(R.id.action_profileFragment_to_loginFragment);
         });
+
         return view;
     }
 
