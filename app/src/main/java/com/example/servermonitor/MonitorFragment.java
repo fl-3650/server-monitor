@@ -17,11 +17,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class MonitorFragment extends Fragment {
-    private static final String TAG = "RRR";
-
-    private static final String URL =
-            "https://server-monitor-e6bb3-default-rtdb.europe-west1.firebasedatabase.app/";
-
     private TextView textView;
 
     public MonitorFragment() {
@@ -51,8 +46,8 @@ public class MonitorFragment extends Fragment {
     }
 
     private void displayStatus() {
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance(URL)
-                .getReference("stats");
+        DatabaseReference databaseReference = FirebaseDatabase
+                .getInstance(MainActivity.getFirebaseDatabaseUrl()).getReference("stats");
 
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -76,10 +71,9 @@ public class MonitorFragment extends Fragment {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Log.w(TAG, "Failed to read value.", error.toException());
+                Log.w(MainActivity.getTag(), "Failed to read value.", error.toException());
                 textView.setText(error.getMessage());
             }
         });
-
     }
 }

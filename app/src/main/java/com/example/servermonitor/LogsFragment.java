@@ -5,7 +5,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -22,13 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LogsFragment extends Fragment {
-    private static final String TAG = "RRR";
-    private static final String URL =
-            "https://server-monitor-e6bb3-default-rtdb.europe-west1.firebasedatabase.app/";
-    private TextView textView;
-    private RecyclerView recyclerView;
     private LogsAdapter adapter;
-
 
     public LogsFragment() {
     }
@@ -43,7 +36,7 @@ public class LogsFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_logs, container, false);
-        recyclerView = view.findViewById(R.id.recyclerViewLogs);
+        RecyclerView recyclerView = view.findViewById(R.id.recyclerViewLogs);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         adapter = new LogsAdapter();
         recyclerView.setAdapter(adapter);
@@ -52,8 +45,8 @@ public class LogsFragment extends Fragment {
     }
 
     private void displayLogs() {
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance(URL)
-                .getReference("logs");
+        DatabaseReference databaseReference = FirebaseDatabase
+                .getInstance(MainActivity.getFirebaseDatabaseUrl()).getReference("logs");
 
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -70,7 +63,7 @@ public class LogsFragment extends Fragment {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Log.w(TAG, "Failed to read value.", error.toException());
+                Log.w(MainActivity.getTag(), "Failed to read value.", error.toException());
             }
         });
     }

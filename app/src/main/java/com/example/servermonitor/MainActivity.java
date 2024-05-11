@@ -9,6 +9,11 @@ import androidx.navigation.Navigation;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
+    private static final String TAG = "RRR";
+
+    private static final String FIREBASE_DATABASE_URL =
+            "https://server-monitor-e6bb3-default-rtdb.europe-west1.firebasedatabase.app/";
+
     BottomNavigationView bottomNavigationView;
 
     @Override
@@ -42,5 +47,13 @@ public class MainActivity extends AppCompatActivity {
         } else {
             bottomNavigationView.setVisibility(View.GONE);
         }
+    }
+
+    public static String getFirebaseDatabaseUrl() {
+        return FIREBASE_DATABASE_URL;
+    }
+
+    public static String getTag() {
+        return TAG;
     }
 }
