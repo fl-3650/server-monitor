@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -19,6 +20,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class LogsFragment extends Fragment {
     private LogsAdapter adapter;
@@ -45,9 +47,23 @@ public class LogsFragment extends Fragment {
     }
 
     private void displayLogs() {
+        // Get the current user's email address
+        String userEmail = Objects.requireNonNull
+                (FirebaseAuth.getInstance().getCurrentUser()).getEmail();
+
+        // Determine whether the current user is an admin
+        boolean isAdmin = false;
+        for (String adminEmail : MainActivity.getAdmins()) {
+            if (adminEmail.equals(userEmail)) {
+                isAdmin = true;
+                break;
+            }
+        }
+
         DatabaseReference databaseReference = FirebaseDatabase
                 .getInstance(MainActivity.getFirebaseDatabaseUrl()).getReference("logs");
 
+        boolean finalIsAdmin = isAdmin;
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -55,7 +71,10 @@ public class LogsFragment extends Fragment {
                 for (DataSnapshot logSnapshot : snapshot.getChildren()) {
                     LogInfo logInfo = logSnapshot.getValue(LogInfo.class);
                     if (logInfo != null) {
-                        logs.add(logInfo);
+                        // Only add the log to the list if it meets the criteria
+                        if (finalIsAdmin || logInfo.getLevel().equals("ERROR")) {
+                            logs.add(logInfo);
+                        }
                     }
                 }
                 adapter.setLogs(logs);
@@ -67,6 +86,7 @@ public class LogsFragment extends Fragment {
             }
         });
     }
+
 
     @Override
     public void onResume() {

@@ -1,15 +1,112 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
     tools:context=".MonitorFragment">
 
     <TextView
-        android:id="@+id/textViewMonitor"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/monitoring_here"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Total Disk Space:"
         android:textSize="16sp" />
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/textViewTotalDiskSpace"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Occupied Disk Space:"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/textViewOccupiedDiskSpace"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Free Disk Space Percentage:"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/textViewFreeDiskSpacePercentage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="CPU Load:"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/textViewCpuLoad"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="RAM Usage:"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/textViewRamUsage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Uptime:"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/textViewUptime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16sp" />
+
+    <LinearLayout
+        android:id="@+id/linearLayoutLoggedInUsers"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Logged In Users:"
+            android:textSize="16sp"
+            android:clickable="true"
+            android:focusable="false"
+            android:onClick="toggleLoggedInUsers"/>
+
+        <LinearLayout
+            android:id="@+id/linearLayoutLoggedInUsersList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/textViewLoggedInUsers"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

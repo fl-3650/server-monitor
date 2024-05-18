@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -32,7 +33,7 @@ public class MonitorFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_monitor, container, false);
-        textView = view.findViewById(R.id.textViewMonitor);
+        //textView = view.findViewById(R.id.textViewMonitor);
 
         displayStatus();
 
@@ -54,15 +55,31 @@ public class MonitorFragment extends Fragment {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 ServerInfo serverInfo = snapshot.getValue(ServerInfo.class);
                 if (serverInfo != null) {
-                    String data = "Total Disk Space: " + serverInfo.getTotal_disk_space() + "\n\n" +
-                            "Occupied Disk Space: " + serverInfo.getOccupied_disk_space() + "\n\n" +
-                            "Free Disk Space Percentage: " + serverInfo
-                            .getFree_disk_space_percentage() + "\n\n" +
-                            "CPU Load: " + serverInfo.getCpu_load() + "\n\n" +
-                            "RAM Usage: " + serverInfo.getRam_usage() + "\n\n" +
-                            "Uptime: " + serverInfo.getUptime() + "\n\n" +
-                            "Logged In Users: " + serverInfo.getLogged_in_users().toString();
-                    textView.setText(data);
+                    TextView textViewTotalDiskSpace = requireView()
+                            .findViewById(R.id.textViewTotalDiskSpace);
+                    TextView textViewOccupiedDiskSpace = requireView()
+                            .findViewById(R.id.textViewOccupiedDiskSpace);
+                    TextView textViewFreeDiskSpacePercentage = requireView()
+                            .findViewById(R.id.textViewFreeDiskSpacePercentage);
+                    TextView textViewCpuLoad = requireView()
+                            .findViewById(R.id.textViewCpuLoad);
+                    TextView textViewRamUsage = requireView()
+                            .findViewById(R.id.textViewRamUsage);
+                    TextView textViewUptime = requireView()
+                            .findViewById(R.id.textViewUptime);
+                    TextView textViewLoggedInUsers = requireView()
+                            .findViewById(R.id.textViewLoggedInUsers);
+
+                    textViewTotalDiskSpace.setText(String.valueOf(serverInfo
+                            .getTotal_disk_space()));
+                    textViewOccupiedDiskSpace.setText(String.valueOf(serverInfo
+                            .getOccupied_disk_space()));
+                    textViewFreeDiskSpacePercentage.setText(String.valueOf(serverInfo
+                            .getFree_disk_space_percentage()));
+                    textViewCpuLoad.setText(String.valueOf(serverInfo.getCpu_load()));
+                    textViewRamUsage.setText(String.valueOf(serverInfo.getRam_usage()));
+                    textViewUptime.setText(String.valueOf(serverInfo.getUptime()));
+                    textViewLoggedInUsers.setText(String.valueOf(serverInfo.getLogged_in_users()));
 
                 } else {
                     textView.setText(R.string.no_data_available);
@@ -75,5 +92,14 @@ public class MonitorFragment extends Fragment {
                 textView.setText(error.getMessage());
             }
         });
+    }
+
+    public void toggleLoggedInUsers(View view) {
+        LinearLayout linearLayoutLoggedInUsersList = view.findViewById(R.id.linearLayoutLoggedInUsersList);
+        if (linearLayoutLoggedInUsersList.getVisibility() == View.GONE) {
+            linearLayoutLoggedInUsersList.setVisibility(View.VISIBLE);
+        } else {
+            linearLayoutLoggedInUsersList.setVisibility(View.GONE);
+        }
     }
 }

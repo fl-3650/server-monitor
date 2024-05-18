@@ -1,6 +1,8 @@
 package com.example.servermonitor;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,6 +15,8 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String FIREBASE_DATABASE_URL =
             "https://server-monitor-e6bb3-default-rtdb.europe-west1.firebasedatabase.app/";
+
+    private static final String[] admins = {"repilovi@gmail.com", "admin@gmail.com"};
 
     BottomNavigationView bottomNavigationView;
 
@@ -41,6 +45,11 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    public static String[] getAdmins() {
+        return admins;
+    }
+
+
     public void showBottomNavigationView(boolean show) {
         if (show) {
             bottomNavigationView.setVisibility(View.VISIBLE);
@@ -55,5 +64,15 @@ public class MainActivity extends AppCompatActivity {
 
     public static String getTag() {
         return TAG;
+    }
+
+    private void saveAdminsToSharedPreferences() {
+        SharedPreferences sharedPreferences = getSharedPreferences("server_monitor_prefs", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        String adminsString = TextUtils.join(",", admins);
+
+        editor.putString("admins", adminsString);
+        editor.apply();
     }
 }

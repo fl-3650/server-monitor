@@ -38,6 +38,7 @@ public class ProfileFragment extends Fragment {
                     .navigate(R.id.action_profileFragment_to_loginFragment);
         } else {
             String emailLabel = getString(R.string.email_label, user.getEmail());
+
             textView.setText(emailLabel);
         }
 
