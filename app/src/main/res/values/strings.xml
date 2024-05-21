@@ -20,4 +20,14 @@
     <string name="server_id">Server ID</string>
     <string name="email_label">Email: %1$s</string>
     <string name="no_data_available">No data available</string>
+    <string name="timestamp_hint">Enter timestamp (date/time)</string>
+    <string name="message_hint">Enter message</string>
+    <string name="server_id_hint">Enter server ID</string>
+
+    <string-array name="log_levels">
+        <item>ERROR</item>
+        <item>WARN</item>
+        <item>INFO</item>
+    </string-array>
+
 </resources>

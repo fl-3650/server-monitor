@@ -1,4 +1,4 @@
-package com.example.servermonitor;
+package com.example.servermonitor.loginreg;
 
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -11,16 +11,18 @@ import android.widget.Toast;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
+import com.example.servermonitor.MainActivity;
+import com.example.servermonitor.R;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class RegistrationFragment extends Fragment {
+public class LoginFragment extends Fragment {
     private TextInputEditText editTextEmail;
     private TextInputEditText editTextPassword;
     private FirebaseAuth mAuth;
 
-    public RegistrationFragment() {
+    public LoginFragment() {
     }
 
     @Override
@@ -41,19 +43,23 @@ public class RegistrationFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_registration, container, false);
+
+        View view = inflater.inflate(R.layout.fragment_login, container, false);
 
         mAuth = FirebaseAuth.getInstance();
         editTextEmail = view.findViewById(R.id.email);
         editTextPassword = view.findViewById(R.id.password);
+        Button buttonLogin = view.findViewById(R.id.btn_login);
 
-        Button buttonLoginNow = view.findViewById(R.id.btn_login_now);
-        buttonLoginNow.setOnClickListener(navigation -> Navigation.findNavController(view)
-                .navigate(R.id.action_registrationFragment_to_loginFragment));
+        Button buttonRegisterNow = view.findViewById(R.id.btn_register_now);
+        buttonRegisterNow.setOnClickListener(navigation -> {
+            Navigation.findNavController(view)
+                    .navigate(R.id.action_loginFragment_to_registrationFragment);
+            onDestroy();
+        });
 
 
-        Button buttonRegister = view.findViewById(R.id.btn_register);
-        buttonRegister.setOnClickListener(v -> {
+        buttonLogin.setOnClickListener(v -> {
             String email = String.valueOf(editTextEmail.getText());
             String password = String.valueOf(editTextPassword.getText());
 
@@ -67,16 +73,18 @@ public class RegistrationFragment extends Fragment {
                 return;
             }
 
-            mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
+            mAuth.signInWithEmailAndPassword(email, password)
+                    .addOnCompleteListener(task -> {
                         if (task.isSuccessful()) {
-                            Toast.makeText(getContext(),
-                                    "Authentication succeeded. You can login now",
+                            Toast.makeText(getContext(), "Authentication succeeded.",
                                     Toast.LENGTH_SHORT).show();
+
+                            Navigation.findNavController(view)
+                                    .navigate(R.id.action_loginFragment_to_homeFragment);
 
                         } else {
                             Toast.makeText(getContext(), "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
-
                         }
                     });
         });

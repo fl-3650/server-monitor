@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.example.servermonitor.LoginFragment"
+        android:name="com.example.servermonitor.loginreg.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" >
         <action
@@ -19,7 +19,7 @@
     </fragment>
     <fragment
         android:id="@+id/registrationFragment"
-        android:name="com.example.servermonitor.RegistrationFragment"
+        android:name="com.example.servermonitor.loginreg.RegistrationFragment"
         android:label="fragment_registration"
         tools:layout="@layout/fragment_registration" >
         <action
@@ -28,7 +28,7 @@
     </fragment>
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.example.servermonitor.LogsFragment"
+        android:name="com.example.servermonitor.logs.LogsFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_logs" >
         <action
@@ -43,7 +43,7 @@
     </fragment>
     <fragment
         android:id="@+id/monitorFragment"
-        android:name="com.example.servermonitor.MonitorFragment"
+        android:name="com.example.servermonitor.monitoring.MonitorFragment"
         android:label="fragment_monitor"
         tools:layout="@layout/fragment_monitor" >
         <action

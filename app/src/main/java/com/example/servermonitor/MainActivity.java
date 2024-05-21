@@ -16,7 +16,10 @@ public class MainActivity extends AppCompatActivity {
     private static final String FIREBASE_DATABASE_URL =
             "https://server-monitor-e6bb3-default-rtdb.europe-west1.firebasedatabase.app/";
 
-    private static final String[] admins = {"repilovi@gmail.com", "admin@gmail.com"};
+    private static final String[] admins = {
+            "repilovi@gmail.com",
+            "admin@gmail.com"
+    };
 
     BottomNavigationView bottomNavigationView;
 

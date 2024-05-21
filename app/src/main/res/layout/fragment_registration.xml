@@ -6,7 +6,7 @@
     android:orientation="vertical"
     android:gravity="center"
     android:padding="15dp"
-    tools:context=".RegistrationFragment">
+    tools:context=".loginreg.RegistrationFragment">
 
     <TextView
         android:textSize="20sp"

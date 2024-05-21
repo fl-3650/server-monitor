@@ -1,4 +1,4 @@
-package com.example.servermonitor;
+package com.example.servermonitor.monitoring;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -7,18 +7,22 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import com.example.servermonitor.MainActivity;
+import com.example.servermonitor.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.BreakIterator;
+
 public class MonitorFragment extends Fragment {
-    private TextView textView;
 
     public MonitorFragment() {
     }
@@ -82,14 +86,15 @@ public class MonitorFragment extends Fragment {
                     textViewLoggedInUsers.setText(String.valueOf(serverInfo.getLogged_in_users()));
 
                 } else {
-                    textView.setText(R.string.no_data_available);
+                    Toast.makeText(requireContext(), "Something went wrong",
+                            Toast.LENGTH_LONG).show();
                 }
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 Log.w(MainActivity.getTag(), "Failed to read value.", error.toException());
-                textView.setText(error.getMessage());
+
             }
         });
     }

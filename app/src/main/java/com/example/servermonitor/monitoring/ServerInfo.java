@@ -1,4 +1,4 @@
-package com.example.servermonitor;
+package com.example.servermonitor.monitoring;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.example.servermonitor;
+package com.example.servermonitor.logs;
 
 public class LogInfo {
     private String timestamp;
