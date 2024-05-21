@@ -1,7 +1,12 @@
 package com.example.servermonitor.logs;
 
 import android.app.AlertDialog;
+
+import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.DialogInterface;
+import android.icu.text.SimpleDateFormat;
+import android.icu.util.Calendar;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -9,8 +14,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -33,12 +40,11 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
 
 public class LogsFragment extends Fragment {
     private LogsAdapter adapter;
-
-
 
 
     public LogsFragment() {
@@ -60,12 +66,7 @@ public class LogsFragment extends Fragment {
         recyclerView.setAdapter(adapter);
 
         Button buttonScheduleAction = view.findViewById(R.id.buttonScheduleAction);
-        buttonScheduleAction.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showScheduleActionDialog();
-            }
-        });
+        buttonScheduleAction.setOnClickListener(v -> showScheduleActionDialog());
 
 
         displayLogs();
@@ -114,32 +115,48 @@ public class LogsFragment extends Fragment {
     }
 
     private void showScheduleActionDialog() {
-        LayoutInflater inflater = getActivity().getLayoutInflater();
+        LayoutInflater inflater = requireActivity().getLayoutInflater();
         View dialogView = inflater.inflate(R.layout.dialog_schedule_action, null);
+        final Calendar calendar = Calendar.getInstance();
+
+        Button buttonTimestamp = dialogView.findViewById(R.id.buttonTimestamp);
+        EditText editTextTimestamp = dialogView.findViewById(R.id.editTextTimestamp);
+        EditText finalEditTextTimestamp1 = editTextTimestamp;
+        buttonTimestamp.setOnClickListener(v -> showTimestampPicker(buttonTimestamp, finalEditTextTimestamp1));
+
+
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setView(dialogView);
         builder.setTitle("Schedule Action");
 
         // Initialize the input fields in the dialog
-        EditText editTextTimestamp = dialogView.findViewById(R.id.editTextTimestamp);
+        editTextTimestamp = dialogView.findViewById(R.id.editTextTimestamp);
         Spinner spinnerLevel = dialogView.findViewById(R.id.spinnerLevel);
         EditText editTextMessage = dialogView.findViewById(R.id.editTextMessage);
         EditText editTextServerId = dialogView.findViewById(R.id.editTextServerId);
 
         // Set up the level spinner
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
-                getActivity(), R.array.log_levels, android.R.layout.simple_spinner_item);
+                requireActivity(), R.array.log_levels, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerLevel.setAdapter(adapter);
 
         // Set up the positive and negative buttons for the dialog
+        EditText finalEditTextTimestamp = editTextTimestamp;
         builder.setPositiveButton("OK", (dialog, which) -> {
             // Extract the user input from the dialog
-            String timestamp = editTextTimestamp.getText().toString();
+            String timestamp = finalEditTextTimestamp.getText().toString();
             String level = spinnerLevel.getSelectedItem().toString();
             String message = editTextMessage.getText().toString();
             String serverId = editTextServerId.getText().toString();
+
+            // Validate the user input
+            if (timestamp.isEmpty() || level.isEmpty() || message.isEmpty() || serverId.isEmpty()) {
+                Toast.makeText(getActivity(), "Please fill in all fields", Toast.LENGTH_SHORT)
+                        .show();
+                return;
+            }
 
             // Create a LogInfo object
             LogInfo logInfo = new LogInfo(timestamp, level, message, serverId);
@@ -152,14 +169,18 @@ public class LogsFragment extends Fragment {
             // Push the LogInfo object to the RTDB
             databaseReference.push().setValue(logInfo).addOnCompleteListener(task -> {
                 if (task.isSuccessful()) {
-                    Toast.makeText(getActivity(), "Log entry scheduled successfully", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "Log entry scheduled successfully",
+                            Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(getActivity(), "Failed to schedule log entry: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "Failed to schedule log entry: " + Objects
+                            .requireNonNull(task.getException()).getMessage(), Toast.LENGTH_SHORT)
+                            .show();
                 }
             });
 
             dialog.dismiss();
         });
+
 
         builder.setNegativeButton("Cancel", (dialog, which) -> dialog.cancel());
 
@@ -167,6 +188,52 @@ public class LogsFragment extends Fragment {
         AlertDialog dialog = builder.create();
         dialog.show();
     }
+
+    private void showTimestampPicker(Button buttonTimestamp, EditText editTextTimestamp) {
+        // Get the current timestamp
+        Calendar timestamp = Calendar.getInstance();
+
+        // Create a DatePickerDialog to let the user select the date
+        DatePickerDialog datePickerDialog = new DatePickerDialog(
+                requireActivity(),
+                (view, year, monthOfYear, dayOfMonth) -> {
+                    // Set the selected date
+                    timestamp.set(Calendar.YEAR, year);
+                    timestamp.set(Calendar.MONTH, monthOfYear);
+                    timestamp.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+
+                    // Create a TimePickerDialog to let the user select the time
+                    TimePickerDialog timePickerDialog = new TimePickerDialog(
+                            requireActivity(),
+                            (view1, hourOfDay, minute) -> {
+                                // Set the selected time
+                                timestamp.set(Calendar.HOUR_OF_DAY, hourOfDay);
+                                timestamp.set(Calendar.MINUTE, minute);
+
+                                // Format the timestamp as a string
+                                SimpleDateFormat sdf = new SimpleDateFormat(
+                                        "yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+                                String timestampString = sdf.format(timestamp.getTime());
+
+                                // Set the timestamp button's text to the selected timestamp
+                                buttonTimestamp.setText(timestampString);
+
+                                // Set the EditText view's text to the selected timestamp
+                                editTextTimestamp.setText(timestampString);
+                            },
+                            timestamp.get(Calendar.HOUR_OF_DAY),
+                            timestamp.get(Calendar.MINUTE),
+                            true
+                    );
+                    timePickerDialog.show();
+                },
+                timestamp.get(Calendar.YEAR),
+                timestamp.get(Calendar.MONTH),
+                timestamp.get(Calendar.DAY_OF_MONTH)
+        );
+        datePickerDialog.show();
+    }
+
 
 
     @Override

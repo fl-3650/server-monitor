@@ -23,6 +23,7 @@
     <string name="timestamp_hint">Enter timestamp (date/time)</string>
     <string name="message_hint">Enter message</string>
     <string name="server_id_hint">Enter server ID</string>
+    <string name="select_timestamp">Select Timestamp (Date/Time)</string>
 
     <string-array name="log_levels">
         <item>ERROR</item>
