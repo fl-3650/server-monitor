@@ -20,8 +20,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.text.BreakIterator;
-
 public class MonitorFragment extends Fragment {
 
     public MonitorFragment() {
@@ -97,14 +95,5 @@ public class MonitorFragment extends Fragment {
 
             }
         });
-    }
-
-    public void toggleLoggedInUsers(View view) {
-        LinearLayout linearLayoutLoggedInUsersList = view.findViewById(R.id.linearLayoutLoggedInUsersList);
-        if (linearLayoutLoggedInUsersList.getVisibility() == View.GONE) {
-            linearLayoutLoggedInUsersList.setVisibility(View.VISIBLE);
-        } else {
-            linearLayoutLoggedInUsersList.setVisibility(View.GONE);
-        }
     }
 }

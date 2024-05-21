@@ -7,7 +7,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.servermonitor.R;
-import com.example.servermonitor.logs.LogInfo;
 
 public class LogViewHolder extends RecyclerView.ViewHolder {
 

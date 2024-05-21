@@ -1,10 +1,8 @@
 package com.example.servermonitor.logs;
 
 import android.app.AlertDialog;
-
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
-import android.content.DialogInterface;
 import android.icu.text.SimpleDateFormat;
 import android.icu.util.Calendar;
 import android.os.Bundle;
@@ -14,10 +12,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TimePicker;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -27,10 +23,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.servermonitor.MainActivity;
 import com.example.servermonitor.R;
-import com.example.servermonitor.logs.LogInfo;
-import com.example.servermonitor.logs.LogsAdapter;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -45,7 +38,6 @@ import java.util.Objects;
 
 public class LogsFragment extends Fragment {
     private LogsAdapter adapter;
-
 
     public LogsFragment() {
     }
@@ -65,7 +57,7 @@ public class LogsFragment extends Fragment {
         adapter = new LogsAdapter();
         recyclerView.setAdapter(adapter);
 
-        Button buttonScheduleAction = view.findViewById(R.id.buttonScheduleAction);
+        FloatingActionButton buttonScheduleAction = view.findViewById(R.id.buttonScheduleAction);
         buttonScheduleAction.setOnClickListener(v -> showScheduleActionDialog());
 
 
@@ -117,13 +109,12 @@ public class LogsFragment extends Fragment {
     private void showScheduleActionDialog() {
         LayoutInflater inflater = requireActivity().getLayoutInflater();
         View dialogView = inflater.inflate(R.layout.dialog_schedule_action, null);
-        final Calendar calendar = Calendar.getInstance();
 
         Button buttonTimestamp = dialogView.findViewById(R.id.buttonTimestamp);
         EditText editTextTimestamp = dialogView.findViewById(R.id.editTextTimestamp);
         EditText finalEditTextTimestamp1 = editTextTimestamp;
-        buttonTimestamp.setOnClickListener(v -> showTimestampPicker(buttonTimestamp, finalEditTextTimestamp1));
-
+        buttonTimestamp.setOnClickListener(v -> showTimestampPicker(buttonTimestamp,
+                finalEditTextTimestamp1));
 
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
@@ -158,6 +149,8 @@ public class LogsFragment extends Fragment {
                 return;
             }
 
+            timestamp += " SCHEDULED";
+
             // Create a LogInfo object
             LogInfo logInfo = new LogInfo(timestamp, level, message, serverId);
 
@@ -173,7 +166,7 @@ public class LogsFragment extends Fragment {
                             Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(getActivity(), "Failed to schedule log entry: " + Objects
-                            .requireNonNull(task.getException()).getMessage(), Toast.LENGTH_SHORT)
+                                    .requireNonNull(task.getException()).getMessage(), Toast.LENGTH_SHORT)
                             .show();
                 }
             });
@@ -233,8 +226,6 @@ public class LogsFragment extends Fragment {
         );
         datePickerDialog.show();
     }
-
-
 
     @Override
     public void onResume() {

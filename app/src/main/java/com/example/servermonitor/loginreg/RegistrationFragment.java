@@ -70,17 +70,17 @@ public class RegistrationFragment extends Fragment {
             }
 
             mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
-                        if (task.isSuccessful()) {
-                            Toast.makeText(getContext(),
-                                    "Authentication succeeded. You can login now",
-                                    Toast.LENGTH_SHORT).show();
+                if (task.isSuccessful()) {
+                    Toast.makeText(getContext(),
+                            "Authentication succeeded. You can login now",
+                            Toast.LENGTH_SHORT).show();
 
-                        } else {
-                            Toast.makeText(getContext(), "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getContext(), "Authentication failed.",
+                            Toast.LENGTH_SHORT).show();
 
-                        }
-                    });
+                }
+            });
         });
 
         return view;

@@ -79,33 +79,14 @@
         android:layout_height="wrap_content"
         android:textSize="16sp" />
 
-    <LinearLayout
-        android:id="@+id/linearLayoutLoggedInUsers"
-        android:layout_width="match_parent"
+
+    <TextView
+        android:id="@+id/textViewLoggedInUsers"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:text="Logged In Users:"
+        android:textSize="16sp"
+        android:clickable="true"
+        android:focusable="false" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Logged In Users:"
-            android:textSize="16sp"
-            android:clickable="true"
-            android:focusable="false"
-            android:onClick="toggleLoggedInUsers"/>
-
-        <LinearLayout
-            android:id="@+id/linearLayoutLoggedInUsersList"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:visibility="gone">
-
-            <TextView
-                android:id="@+id/textViewLoggedInUsers"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="16sp" />
-        </LinearLayout>
-    </LinearLayout>
 </LinearLayout>

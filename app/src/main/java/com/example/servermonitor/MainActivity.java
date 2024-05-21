@@ -23,6 +23,18 @@ public class MainActivity extends AppCompatActivity {
 
     BottomNavigationView bottomNavigationView;
 
+    public static String[] getAdmins() {
+        return admins;
+    }
+
+    public static String getFirebaseDatabaseUrl() {
+        return FIREBASE_DATABASE_URL;
+    }
+
+    public static String getTag() {
+        return TAG;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,34 +60,11 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public static String[] getAdmins() {
-        return admins;
-    }
-
-
     public void showBottomNavigationView(boolean show) {
         if (show) {
             bottomNavigationView.setVisibility(View.VISIBLE);
         } else {
             bottomNavigationView.setVisibility(View.GONE);
         }
-    }
-
-    public static String getFirebaseDatabaseUrl() {
-        return FIREBASE_DATABASE_URL;
-    }
-
-    public static String getTag() {
-        return TAG;
-    }
-
-    private void saveAdminsToSharedPreferences() {
-        SharedPreferences sharedPreferences = getSharedPreferences("server_monitor_prefs", MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-
-        String adminsString = TextUtils.join(",", admins);
-
-        editor.putString("admins", adminsString);
-        editor.apply();
     }
 }
