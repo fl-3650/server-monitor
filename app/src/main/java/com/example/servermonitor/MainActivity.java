@@ -1,8 +1,6 @@
 package com.example.servermonitor;
 
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,7 +11,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "RRR";
 
-    private static final String FIREBASE_DATABASE_URL =
+    private static final String FIREBASE_REALTIME_DATABASE_URL =
             "https://server-monitor-e6bb3-default-rtdb.europe-west1.firebasedatabase.app/";
 
     private static final String[] admins = {
@@ -27,8 +25,8 @@ public class MainActivity extends AppCompatActivity {
         return admins;
     }
 
-    public static String getFirebaseDatabaseUrl() {
-        return FIREBASE_DATABASE_URL;
+    public static String getFirebaseRealtimeDatabaseUrl() {
+        return FIREBASE_REALTIME_DATABASE_URL;
     }
 
     public static String getTag() {

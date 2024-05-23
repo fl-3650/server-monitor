@@ -5,7 +5,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -50,7 +49,7 @@ public class MonitorFragment extends Fragment {
 
     private void displayStatus() {
         DatabaseReference databaseReference = FirebaseDatabase
-                .getInstance(MainActivity.getFirebaseDatabaseUrl()).getReference("stats");
+                .getInstance(MainActivity.getFirebaseRealtimeDatabaseUrl()).getReference("stats");
 
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override

@@ -80,7 +80,7 @@ public class LogsFragment extends Fragment {
         }
 
         DatabaseReference databaseReference = FirebaseDatabase
-                .getInstance(MainActivity.getFirebaseDatabaseUrl()).getReference("logs");
+                .getInstance(MainActivity.getFirebaseRealtimeDatabaseUrl()).getReference("logs");
 
         boolean finalIsAdmin = isAdmin;
         databaseReference.addValueEventListener(new ValueEventListener() {
@@ -156,7 +156,7 @@ public class LogsFragment extends Fragment {
 
             // Get a reference to the RTDB
             DatabaseReference databaseReference = FirebaseDatabase
-                    .getInstance(MainActivity.getFirebaseDatabaseUrl())
+                    .getInstance(MainActivity.getFirebaseRealtimeDatabaseUrl())
                     .getReference("logs");
 
             // Push the LogInfo object to the RTDB
