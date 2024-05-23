@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
             "admin@gmail.com"
     };
 
-    BottomNavigationView bottomNavigationView;
+    private BottomNavigationView bottomNavigationView;
 
     public static String[] getAdmins() {
         return admins;
