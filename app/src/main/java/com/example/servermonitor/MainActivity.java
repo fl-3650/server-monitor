@@ -9,7 +9,6 @@ import androidx.navigation.Navigation;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
-    private static final String TAG = "RRR";
 
     private static final String FIREBASE_REALTIME_DATABASE_URL =
             "https://server-monitor-e6bb3-default-rtdb.europe-west1.firebasedatabase.app/";
@@ -27,10 +26,6 @@ public class MainActivity extends AppCompatActivity {
 
     public static String getFirebaseRealtimeDatabaseUrl() {
         return FIREBASE_REALTIME_DATABASE_URL;
-    }
-
-    public static String getTag() {
-        return TAG;
     }
 
     @Override

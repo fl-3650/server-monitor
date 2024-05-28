@@ -1,7 +1,6 @@
 package com.example.servermonitor.monitoring;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,7 +33,6 @@ public class MonitorFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_monitor, container, false);
-        //textView = view.findViewById(R.id.textViewMonitor);
 
         displayStatus();
 
@@ -72,15 +70,15 @@ public class MonitorFragment extends Fragment {
                             .findViewById(R.id.textViewLoggedInUsers);
 
                     textViewTotalDiskSpace.setText(String.valueOf(serverInfo
-                            .getTotal_disk_space()));
+                            .getTotalDiskSpace()));
                     textViewOccupiedDiskSpace.setText(String.valueOf(serverInfo
-                            .getOccupied_disk_space()));
+                            .getOccupiedDiskSpace()));
                     textViewFreeDiskSpacePercentage.setText(String.valueOf(serverInfo
-                            .getFree_disk_space_percentage()));
-                    textViewCpuLoad.setText(String.valueOf(serverInfo.getCpu_load()));
-                    textViewRamUsage.setText(String.valueOf(serverInfo.getRam_usage()));
+                            .getFreeDiskSpacePercentage()));
+                    textViewCpuLoad.setText(String.valueOf(serverInfo.getCpuLoad()));
+                    textViewRamUsage.setText(String.valueOf(serverInfo.getRamUsage()));
                     textViewUptime.setText(String.valueOf(serverInfo.getUptime()));
-                    textViewLoggedInUsers.setText(String.valueOf(serverInfo.getLogged_in_users()));
+                    textViewLoggedInUsers.setText(String.valueOf(serverInfo.getLoggedInUsers()));
 
                 } else {
                     Toast.makeText(requireContext(), "Something went wrong",
@@ -90,8 +88,8 @@ public class MonitorFragment extends Fragment {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Log.w(MainActivity.getTag(), "Failed to read value.", error.toException());
-
+                Toast.makeText(requireContext(), "Failed to read value.", Toast.LENGTH_LONG)
+                        .show();
             }
         });
     }

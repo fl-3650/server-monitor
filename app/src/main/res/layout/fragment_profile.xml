@@ -28,4 +28,5 @@
         app:layout_constraintStart_toStartOf="@+id/user_details"
         app:layout_constraintTop_toTopOf="@+id/user_details" />
 
+
 </androidx.constraintlayout.widget.ConstraintLayout>

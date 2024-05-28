@@ -30,6 +30,7 @@ android {
 }
 
 dependencies {
+    implementation(libs.cardview)
     implementation(libs.material.v130)
     implementation(libs.navigation.fragment)
     implementation(libs.navigation.ui)
