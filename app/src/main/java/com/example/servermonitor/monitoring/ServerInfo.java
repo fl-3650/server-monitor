@@ -3,68 +3,68 @@ package com.example.servermonitor.monitoring;
 import java.util.List;
 
 public class ServerInfo {
-    private double totalDiskSpace;
-    private double occupiedDiskSpace;
-    private double freeDiskSpacePercentage;
-    private double cpuLoad;
-    private double ramUsage;
+    private double total_disk_space;
+    private double occupied_disk_space;
+    private double free_disk_space_percentage;
+    private double cpu_load;
+    private double ram_usage;
     private double uptime;
-    private List<String> loggedInUsers;
+    private List<String> logged_in_users;
 
     public ServerInfo() {
     }
 
-    public ServerInfo(double totalDiskSpace, double occupiedDiskSpace,
-                      double freeDiskSpacePercentage, double cpuLoad,
-                      double ramUsage, double uptime, List<String> loggedInUsers) {
+    public ServerInfo(double total_disk_space, double occupied_disk_space,
+                      double free_disk_space_percentage, double cpu_load,
+                      double ram_usage, double uptime, List<String> logged_in_users) {
 
-        this.totalDiskSpace = totalDiskSpace;
-        this.occupiedDiskSpace = occupiedDiskSpace;
-        this.freeDiskSpacePercentage = freeDiskSpacePercentage;
-        this.cpuLoad = cpuLoad;
-        this.ramUsage = ramUsage;
+        this.total_disk_space = total_disk_space;
+        this.occupied_disk_space = occupied_disk_space;
+        this.free_disk_space_percentage = free_disk_space_percentage;
+        this.cpu_load = cpu_load;
+        this.ram_usage = ram_usage;
         this.uptime = uptime;
-        this.loggedInUsers = loggedInUsers;
+        this.logged_in_users = logged_in_users;
     }
 
-    public double getTotalDiskSpace() {
-        return totalDiskSpace;
+    public double getTotal_disk_space() {
+        return total_disk_space;
     }
 
-    public void setTotalDiskSpace(double totalDiskSpace) {
-        this.totalDiskSpace = totalDiskSpace;
+    public void setTotal_disk_space(double total_disk_space) {
+        this.total_disk_space = total_disk_space;
     }
 
-    public double getOccupiedDiskSpace() {
-        return occupiedDiskSpace;
+    public double getOccupied_disk_space() {
+        return occupied_disk_space;
     }
 
-    public void setOccupiedDiskSpace(double occupiedDiskSpace) {
-        this.occupiedDiskSpace = occupiedDiskSpace;
+    public void setOccupied_disk_space(double occupied_disk_space) {
+        this.occupied_disk_space = occupied_disk_space;
     }
 
-    public double getFreeDiskSpacePercentage() {
-        return freeDiskSpacePercentage;
+    public double getFree_disk_space_percentage() {
+        return free_disk_space_percentage;
     }
 
-    public void setFreeDiskSpacePercentage(double freeDiskSpacePercentage) {
-        this.freeDiskSpacePercentage = freeDiskSpacePercentage;
+    public void setFree_disk_space_percentage(double free_disk_space_percentage) {
+        this.free_disk_space_percentage = free_disk_space_percentage;
     }
 
-    public double getCpuLoad() {
-        return cpuLoad;
+    public double getCpu_load() {
+        return cpu_load;
     }
 
-    public void setCpuLoad(double cpuLoad) {
-        this.cpuLoad = cpuLoad;
+    public void setCpu_load(double cpu_load) {
+        this.cpu_load = cpu_load;
     }
 
-    public double getRamUsage() {
-        return ramUsage;
+    public double getRam_usage() {
+        return ram_usage;
     }
 
-    public void setRamUsage(double ramUsage) {
-        this.ramUsage = ramUsage;
+    public void setRam_usage(double ram_usage) {
+        this.ram_usage = ram_usage;
     }
 
     public double getUptime() {
@@ -75,11 +75,11 @@ public class ServerInfo {
         this.uptime = uptime;
     }
 
-    public List<String> getLoggedInUsers() {
-        return loggedInUsers;
+    public List<String> getLogged_in_users() {
+        return logged_in_users;
     }
 
-    public void setLoggedInUsers(List<String> loggedInUsers) {
-        this.loggedInUsers = loggedInUsers;
+    public void setLogged_in_users(List<String> logged_in_users) {
+        this.logged_in_users = logged_in_users;
     }
 }
