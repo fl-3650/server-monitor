@@ -49,7 +49,7 @@ public class LogsFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_logs, container, false);
@@ -70,21 +70,13 @@ public class LogsFragment extends Fragment {
         String userEmail = Objects.requireNonNull
                 (FirebaseAuth.getInstance().getCurrentUser()).getEmail();
 
-        boolean isAdmin = false;
-        for (String adminEmail : MainActivity.getAdmins()) {
-            if (adminEmail.equals(userEmail)) {
-                isAdmin = true;
-                break;
-            }
-        }
-
         DatabaseReference databaseReference = FirebaseDatabase
                 .getInstance(MainActivity.getFirebaseRealtimeDatabaseUrl())
                 .getReference("logs");
 
         Query query = databaseReference.orderByChild("timestamp");
 
-        boolean finalIsAdmin = isAdmin;
+        boolean isAdmin = MainActivity.isAdmin(userEmail);
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -92,7 +84,7 @@ public class LogsFragment extends Fragment {
                 for (DataSnapshot logSnapshot : snapshot.getChildren()) {
                     LogInfo logInfo = logSnapshot.getValue(LogInfo.class);
                     if (logInfo != null) {
-                        if (finalIsAdmin || logInfo.getLevel().equals("ERROR")) {
+                        if (isAdmin || logInfo.getLevel().equals("ERROR")) {
                             logs.add(logInfo);
                         }
                     }

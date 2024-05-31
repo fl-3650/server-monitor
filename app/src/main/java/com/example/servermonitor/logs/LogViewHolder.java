@@ -23,7 +23,7 @@ public class LogViewHolder extends RecyclerView.ViewHolder {
         textViewServerId = itemView.findViewById(R.id.textViewServerId);
     }
 
-    public void bind(LogInfo logInfo) {
+    public void bind(@NonNull LogInfo logInfo) {
         textViewTimestamp.setText(logInfo.getTimestamp());
         textViewLevel.setText(logInfo.getLevel());
         textViewMessage.setText(logInfo.getMessage());

@@ -7,6 +7,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.Navigation;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+
+import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -20,12 +23,17 @@ public class MainActivity extends AppCompatActivity {
 
     private BottomNavigationView bottomNavigationView;
 
-    public static String[] getAdmins() {
-        return admins;
-    }
-
     public static String getFirebaseRealtimeDatabaseUrl() {
         return FIREBASE_REALTIME_DATABASE_URL;
+    }
+
+    public static boolean isAdmin(String email) {
+        for (String adminEmail : admins) {
+            if (adminEmail.equals(email)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override
