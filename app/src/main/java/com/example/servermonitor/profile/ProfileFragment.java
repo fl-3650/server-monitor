@@ -1,4 +1,4 @@
-package com.example.servermonitor;
+package com.example.servermonitor.profile;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,6 +11,8 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
+import com.example.servermonitor.MainActivity;
+import com.example.servermonitor.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
