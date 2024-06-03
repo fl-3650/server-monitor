@@ -6,8 +6,7 @@ public class LogInfo {
     private String message;
     private String server_id;
 
-    public LogInfo() {
-    }
+    public LogInfo() {}
 
     public LogInfo(String timestamp, String level, String message, String server_id) {
         this.timestamp = timestamp;

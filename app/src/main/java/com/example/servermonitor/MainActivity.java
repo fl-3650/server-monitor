@@ -7,9 +7,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.Navigation;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.firebase.auth.FirebaseAuth;
-
-import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
